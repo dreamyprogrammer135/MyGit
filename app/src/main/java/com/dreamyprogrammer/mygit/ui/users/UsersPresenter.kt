@@ -1,13 +1,13 @@
-package com.dreamyprogrammer.mygit.ui.users.adapter
+package com.dreamyprogrammer.mygit.ui.users
 
 import com.dreamyprogrammer.mygit.domain.GithubUserRepo
 import com.dreamyprogrammer.mygit.model.GithubUserModel
 import com.dreamyprogrammer.mygit.ui.base.IListPresenter
-import com.dreamyprogrammer.mygit.ui.users.UserItemView
-import com.dreamyprogrammer.mygit.ui.users.UsersView
+import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class UsersPresenter(
+    private val router: Router,
     private val usersRepo: GithubUserRepo
 ) : MvpPresenter<UsersView>() {
     val usersListPresenter = UsersListPresenter()
@@ -16,7 +16,7 @@ class UsersPresenter(
         super.onFirstViewAttach()
         loadData()
 
-        usersListPresenter.itemClickListener = {} // TODO
+        usersListPresenter.itemClickListener = {} // TODO открываем фрагмент с юзером из списка
     }
 
     private fun loadData() {
@@ -25,6 +25,12 @@ class UsersPresenter(
 
         viewState.updateList()
     }
+
+    fun backPressed(): Boolean {
+        router.exit()
+        return true
+    }
+
 
     class UsersListPresenter : IListPresenter<UserItemView> {
 
@@ -39,4 +45,5 @@ class UsersPresenter(
             view.setLogin(user.login)
         }
     }
+
 }

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dreamyprogrammer.mygit.databinding.ItemUserBinding
 import com.dreamyprogrammer.mygit.ui.users.UserItemView
+import com.dreamyprogrammer.mygit.ui.users.UsersPresenter
 
 class UserAdapter(
     private val presenter: UsersPresenter.UsersListPresenter
